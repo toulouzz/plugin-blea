@@ -56,6 +56,8 @@ class ParrotPlant():
 			result['calibratedli'] = self.__convertFloatData(conn.readCharacteristic(self.characteristicHandles['calibratedli']))
 			result['color'] = self.__convertColorData(conn.readCharacteristic(self.characteristicHandles['color']))
 			result['battery'] = self.__convertBatteryData(conn.readCharacteristic(self.characteristicHandles['battery']))
+			result['volume'] = self.__convertVolumeData(conn.readCharacteristic(self.characteristicHandles['volume']))
+			result['mode'] = self.__convertModeData(conn.readCharacteristic(self.characteristicHandles['mode']))
 			result['id'] = mac
 			logging.debug(str(result))
 			return result
@@ -87,9 +89,19 @@ class ParrotPlant():
 			7: 'blue'
 		}
 		return choices.get(self.__safeUnpack('<H', data), 'unknown')
+	
+	def __convertVolumeData(self,data):
+		return self.__safeUnpack('B', data)
 
 	def __convertBatteryData(self,data):
 		return self.__safeUnpack('B', data)
+      
+	def __convertModeData(self,data):
+		choices = {
+			0: 'manuel',
+			1: 'automatique'		
+        }
+		return choices.get(self.__safeUnpack('B', data), 'unknown')
 
 	def __safeUnpack(self,fmt,data):
 		try:
@@ -112,6 +124,8 @@ class FlowerPower(ParrotPlant):
 			'calibratedairtemp': '0x43',
 			'calibratedli': '0x47',
 			'color': '0x85',
+			'volume': '0x8b',
+			'mode': '0x90',
 			'battery': '0x4c'
 		}
 
@@ -136,6 +150,8 @@ class ParrotPot(ParrotPlant):
 			'calibratedairtemp': '0x44',
 			'calibratedli': '0x47',
 			'color': '0x72',
+			'volume': '0x8b',
+			'mode': '0x90',
 			'battery': '0x4b'
 		}
 
