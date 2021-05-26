@@ -5,8 +5,8 @@
 		"configuration" : {
 			"needsrefresh" : 1,
 			"name" : "parrotpot",
-			"battery_type" : "Batterie",
-			"delay" : 900,
+			"battery_type" : "4xAA 1.5V",
+			"delay" : 3600,
 			"cancontrol" : 1
 		},
         "commands": [
@@ -104,7 +104,7 @@
 					"generic_type": "DONT"
 				},
                 "isVisible": 1,
-                "isHistorized": 0,
+                "isHistorized": 1,
                 "unite": "%",
                 "logicalId": "calibratedsoilmoisture",
 				"template": {
@@ -121,7 +121,7 @@
 					"generic_type": "DONT"
                 },
                 "isVisible": 1,
-                "isHistorized": 0,
+                "isHistorized": 1,
                 "unite": "°C",
                 "logicalId": "calibratedairtemp",
 				"template": {
@@ -180,6 +180,78 @@
 					"mobile": "line"
 				}
             },
+          	{
+                "name": "Volume",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"icon": "<i class=\"fas fa-water\"><\/i>",
+					"generic_type": "DONT"
+				},
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "%",
+                "logicalId": "volume",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+            {
+                "name": "Mode",
+                "type": "info",
+                "subtype": "string",
+                "display": {
+					"icon": "<i class=\"fas fa-info-circle\"><\/i>",
+					"generic_type": "DONT"
+				},
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "",
+                "logicalId": "mode",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+        	{
+                "name": "Arrosage message",
+                "type": "action",
+                "subtype": "message",
+                "display": {
+                  	"icon": "<i class=\"fas fa-shower\"><\/i>",
+                    "generic_type": "GENERIC"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "s",
+                "logicalId": "name:Parrot pot,handle:0x89,value:#message#00"
+			},
+            {
+                "name": "Arrosage slider",
+                "type": "action",
+                "subtype": "slider",
+                "display": {
+                  	"icon": "<i class=\"fas fa-shower\"><\/i>",
+                    "generic_type": "GENERIC"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "s",
+                "logicalId": "name:Parrot pot,handle:0x89,value:#slider#00"
+			},           
+          	{
+                "name": "Identification",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+                    "generic_type": "GENERIC"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "",
+                "logicalId": "name:Parrot pot,handle:0x003f,value:11"
+			},
             {
                 "name": "Refresh",
                 "type": "action",
